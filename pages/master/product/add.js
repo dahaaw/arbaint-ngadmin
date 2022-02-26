@@ -125,27 +125,46 @@ export default function add() {
         </div>
         }
         
-        {variant[0].option.map((v1, i1) => {
-                
-            return variant[1]?.option.map((v2, i2) => {
-                return (<Card title={`${variant[0].name} ${v1}, ${variant[1].name} ${v2}`}>
-                    <div className='lg:flex lg:space-x-3'>
-                        <div className='lg:w-4/12'>
-                            SKU
-                            <Input onChange={setSKU} value={SKU} placeholder='optional' />
+        {menuVariant && variant[0].option.map((v1, i1) => {
+                if(!variant[1]){
+                    return (<Card title={`${variant[0].name} ${v1}`}>
+                        <div className='lg:flex lg:space-x-3'>
+                            <div className='lg:w-4/12'>
+                                SKU
+                                <Input onChange={setSKU} value={SKU} placeholder='optional' />
+                            </div>
+                            <div className='lg:w-4/12'>
+                                Harga
+                                <Input onChange={setPrice} value={price}  />
+                            </div>
+                            <div className='lg:w-4/12'>
+                                Stok
+                                <Input onChange={setPrice} value={price}  />
+                            </div>
                         </div>
-                        <div className='lg:w-4/12'>
-                            Harga
-                            <Input onChange={setPrice} value={price}  />
-                        </div>
-                        <div className='lg:w-4/12'>
-                            Stok
-                            <Input onChange={setPrice} value={price}  />
-                        </div>
-                    </div>
-                </Card>)
+                    </Card>)
+                }else{
+                    return variant[1]?.option.map((v2, i2) => {
+                        return (<Card title={`${variant[0].name} ${v1}, ${variant[1].name} ${v2}`}>
+                            <div className='lg:flex lg:space-x-3'>
+                                <div className='lg:w-4/12'>
+                                    SKU
+                                    <Input onChange={setSKU} value={SKU} placeholder='optional' />
+                                </div>
+                                <div className='lg:w-4/12'>
+                                    Harga
+                                    <Input onChange={setPrice} value={price}  />
+                                </div>
+                                <div className='lg:w-4/12'>
+                                    Stok
+                                    <Input onChange={setPrice} value={price}  />
+                                </div>
+                            </div>
+                        </Card>)
+                    })
+                } 
             })
-        })}
+        }
 
         <Button onClick={() => console.log({description}) } >huhu</Button>
     </Layout>);
